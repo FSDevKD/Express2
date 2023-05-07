@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="stylesheet" href="/css/style.css">
+
+    <title>To Do List</title>
+</head>
+<body>
+
+    <header>
+    </header>
+
+    <div class="">
+        <div class="B1">
+            <h1>Things To Do. . . </h1>
+        </div>
+
+        <div class="B2">
+            <form id="addItemForm">
+                <input id="items" type="text" placeholder="Empty Your Brain Here! Keep A Clear Mind" name="text">
+                <button type="submit">Add Item</button>
+            </form>
+            <button id="clear">Clear All</button>
+            <button id="finished">Finished</button>
+        </div>
+
+        <div class="B3">
+            <ul id="list">
+                <% todoItems.forEach(function(todoItem) { %>
+                    <li class="<%= todoItem.completed ? 'finished' : '' %>">
+                        <%= todoItem.text %>
+                    </li>
+                <% }); %>
+            </ul>
+            <p id="total">Total: <%= todoItems.length %></p>
+        </div>
+    </div>
+
+    <footer>
+        <p> Made With &hearts; In Philly! &copy; <a href ="http://FsDevKd.com" target="_blank">FsDevKd</a> | The Chase Agency. All rights reserved</p>
+    </footer>
+
+    <script>
+        const addItemForm = document.querySelector("#addItemForm");
+        const clearBtn = document.querySelector("#clear");
+        const finishedBtn = document.querySelector("#finished");
+
+        addItemForm.addEventListener("submit", async (event) => {
+            event.preventDefault();
+            const formData = new FormData(addItemForm);
+            await fetch('/add', {
+                method: 'POST',
+                body: new URLSearchParams(formData),
+            });
+            window.location.reload();
+        });
+
+        clearBtn.addEventListener("click", async () => {
+            await fetch('/clear', { method: 'POST' });
+            window.location.reload();
+        });
+
+        finishedBtn.addEventListener("click", async () => {
+            await fetch('/finish', { method: 'POST' });
+            window.location.reload();
+        });
+    </script>
+</body>
+</html>

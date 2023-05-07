@@ -1,0 +1,25 @@
+{
+  "name": "todolist",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/FSDevKD/Express2.git"
+  },
+  "author": "fsdevkd",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/FSDevKD/Express2/issues"
+  },
+  "homepage": "https://github.com/FSDevKD/Express2#readme",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "ejs": "^3.1.9",
+    "express": "^4.18.2",
+    "mongoose": "^7.1.0"
+  }
+}
